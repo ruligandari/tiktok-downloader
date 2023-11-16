@@ -13,3 +13,6 @@ $routes->group('download', function ($routes) {
     $routes->get('video/(:any)', 'Download::video/$1');
     $routes->get('music/(:any)', 'Download::music/$1');
 });
+
+$routes->get('chat', 'Home::chat');
+$routes->post('chat', 'Home::tanya');

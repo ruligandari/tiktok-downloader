@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Ecommerce Dashboard &mdash; Stisla</title>
+    <title><?= $title ?></title>
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="<?= base_url('/dist') ?>/assets/modules/bootstrap/css/bootstrap.min.css">
@@ -39,7 +39,7 @@
         <div class="main-wrapper container">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
-                <a href="index.html" class="navbar-brand">Tiktok Downloader</a>
+                <a href="index.html" class="navbar-brand"><?= $title ?></a>
             </nav>
 
             <!-- Main Content -->
