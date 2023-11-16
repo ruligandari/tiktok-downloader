@@ -75,8 +75,15 @@ class Home extends BaseController
 
     public function image()
     {
+        // membasa file dummy.json yang disimpan di folder public
+        $json = file_get_contents('./dummy.json');
+        // mengubah json menjadi array
+        $datas = json_decode($json);
+        // mengambil data gambar secara acak
+
         $data = [
-            'title' => 'DALL-e GPT-3'
+            'title' => 'DALL-e GPT-3',
+            'dummy' => $datas->name,
 
         ];
         return view('home/image', $data);
@@ -94,7 +101,6 @@ class Home extends BaseController
         $response = $client->request('GET', 'https://api.ibeng.tech/api/ai/stablediffusion?q=' . $link . '&apikey=4Ykrb9N6at');
         if ($response->getStatusCode() == 200) {
             $json = $response->getBody();
-
 
             $data = [
                 'title' => 'DALL-e GPT-3',
