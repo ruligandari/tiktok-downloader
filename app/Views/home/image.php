@@ -19,7 +19,7 @@
                         </form>
                     </div>
                     <div class="card-footer bg-whitesmoke">
-                        <img src="data:image/png;base64,<?= $jawaban ?? '' ?>" class="img-fluid">
+                        <img src="data:image/png;base64,<?= $jawaban ?? 'notfond' ?>" class="img-fluid d-flex justify-content-center">
                     </div>
                 </div>
             </div>
