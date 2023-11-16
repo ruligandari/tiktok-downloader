@@ -16,3 +16,6 @@ $routes->group('download', function ($routes) {
 
 $routes->get('chat', 'Home::chat');
 $routes->post('chat', 'Home::tanya');
+
+$routes->get('image', 'Home::image');
+$routes->post('image', 'Home::cari');

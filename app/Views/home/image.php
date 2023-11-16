@@ -6,9 +6,9 @@
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    <h5>Masukan Pertanyaan</h5>
+                    <h5>Masukan Gambar Yang diinginkan</h5>
                     <div class="form-group">
-                        <form action="<?= base_url('chat') ?>" method="post">
+                        <form action="<?= base_url('image') ?>" method="post">
 
                             <div class="input-group mb-3">
                                 <input type="text" name="link" class="form-control" placeholder="" aria-label="" required>
@@ -19,7 +19,7 @@
                         </form>
                     </div>
                     <div class="card-footer bg-whitesmoke">
-                        <p> <?= $jawaban ?? 'Jawaban akan muncul disini!' ?></p>
+                        <img src="data:image/png;base64,<?= $jawaban ?? '' ?>" class="img-fluid">
                     </div>
                 </div>
             </div>

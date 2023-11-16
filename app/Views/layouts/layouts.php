@@ -39,7 +39,12 @@
         <div class="main-wrapper container">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar">
-                <a href="index.html" class="navbar-brand"><?= $title ?></a>
+                <a href="<?= base_url('/') ?>" class="navbar-brand"><?= $title ?></a>
+                <ul class="navbar-nav">
+                    <li class="nav-item <?= $title == 'Tiktok Downloader' ? 'active' : '' ?>"><a href="<?= base_url('/') ?>" class="nav-link">Tiktok</a></li>
+                    <li class="nav-item <?= $title == 'Chatbot GPT-3' ? 'active' : '' ?>"><a href="<?= base_url('/chat') ?>" class="nav-link">Chatbot GPT-3</a></li>
+                    <li class="nav-item <?= $title == 'DALL-e GPT-3' ? 'active' : '' ?>"><a href="<?= base_url('/image') ?>" class="nav-link">DALL-e GPT-3</a></li>
+                </ul>
             </nav>
 
             <!-- Main Content -->

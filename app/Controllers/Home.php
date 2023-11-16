@@ -27,6 +27,7 @@ class Home extends BaseController
             $music =  $datas->data->music;
 
             $data =  [
+                'title' => 'Tiktok Downloader',
                 'video' => base64_encode($videoHd),
                 'music' => base64_encode($music)
             ];
@@ -67,6 +68,44 @@ class Home extends BaseController
             //     'music' => base64_encode($music)
             // ];
             return view('home/chat', $data);
+        } else {
+            return redirect()->to('/')->with('error', 'Link Tidak Sesuai');
+        }
+    }
+
+    public function image()
+    {
+        $data = [
+            'title' => 'DALL-e GPT-3'
+
+        ];
+        return view('home/image', $data);
+    }
+
+    public function cari()
+    {
+        $link = $this->request->getPost('link');
+        // ubah spasi mendai jadi %20
+        $link = str_replace(' ', '%20', $link);
+        $client = \Config\Services::curlrequest();
+        // https://api.ibeng.tech/api/others/chatgpt?q=apa%20itu%20ai&apikey=4Ykrb9N6at
+        // https://api.ibeng.tech/api/ai/stablediffusion?q=
+
+        $response = $client->request('GET', 'https://api.ibeng.tech/api/ai/stablediffusion?q=' . $link . '&apikey=4Ykrb9N6at');
+        if ($response->getStatusCode() == 200) {
+            $json = $response->getBody();
+
+
+            $data = [
+                'title' => 'DALL-e GPT-3',
+                'jawaban' => base64_encode($json),
+            ];
+
+            // $data =  [
+            //     'video' => base64_encode($videoHd),
+            //     'music' => base64_encode($music)
+            // ];
+            return view('home/image', $data);
         } else {
             return redirect()->to('/')->with('error', 'Link Tidak Sesuai');
         }
