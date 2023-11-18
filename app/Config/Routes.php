@@ -19,3 +19,6 @@ $routes->post('chat', 'Home::tanya');
 
 $routes->get('image', 'Home::image');
 $routes->post('image', 'Home::cari');
+
+$routes->get('youtube', 'Home::youtube');
+$routes->post('youtube', 'Home::dlYoutube');

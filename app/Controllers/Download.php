@@ -9,8 +9,6 @@ class Download extends BaseController
     public function video($link)
     {
         $videoUrl = base64_decode($link);
-
-
         // Tentukan nama file lokal untuk disimpan dengan nama random
         $localFilename = 'video-' . date('YmdHis') . '.mp4';
 
