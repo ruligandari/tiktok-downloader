@@ -19,23 +19,27 @@ class Home extends BaseController
 
         $client = \Config\Services::curlrequest();
 
-        $response = $client->request('GET', 'https://api.ibeng.tech/api/downloader/tiktok?url=' . $link . '&apikey=4Ykrb9N6at');
-        if ($response->getStatusCode() == 200) {
-            $json = $response->getBody();
-            $datas = json_decode($json);
-            $videoHd = $datas->data->hdplay;
-            $videoOri = $datas->data->play;
-            $music =  $datas->data->music;
+        try {
+            $response = $client->request('GET', 'https://api.ibeng.tech/api/downloader/tiktok?url=' . $link . '&apikey=4Ykrb9N6at');
+            if ($response->getStatusCode() == 200) {
+                $json = $response->getBody();
+                $datas = json_decode($json);
+                $videoHd = $datas->data->hdplay;
+                $videoOri = $datas->data->play;
+                $music =  $datas->data->music;
 
-            $data =  [
-                'title' => 'Tiktok Downloader',
-                'video' => base64_encode($videoHd),
-                'videoOri' => base64_encode($videoOri),
-                'music' => base64_encode($music)
-            ];
-            return view('home/result', $data);
-        } else {
-            return redirect()->to('/')->with('error', 'Link Tidak Sesuai');
+                $data =  [
+                    'title' => 'Tiktok Downloader',
+                    'video' => base64_encode($videoHd),
+                    'videoOri' => base64_encode($videoOri),
+                    'music' => base64_encode($music)
+                ];
+                return view('home/result', $data);
+            } else {
+                return redirect()->to('/')->with('error', 'Link Tidak Sesuai');
+            }
+        } catch (\Throwable $th) {
+            echo $th;
         }
     }
 
@@ -134,20 +138,23 @@ class Home extends BaseController
 
         $client = \Config\Services::curlrequest();
 
-        $response = $client->request('GET', 'https://api.ibeng.tech/api/downloader/youtube-video?url=' . $link . '&apikey=4Ykrb9N6at');
-        dd($response);
-        if ($response->getStatusCode() == 200) {
-            $json = $response->getBody();
-            $datas = json_decode($json);
-            $videoHd = $datas->data->url;
+        try {
+            $response = $client->request('GET', 'https://api.ibeng.tech/api/downloader/youtube-video?url=' . $link . '&apikey=4Ykrb9N6at');
+            if ($response->getStatusCode() == 200) {
+                $json = $response->getBody();
+                $datas = json_decode($json);
+                $videoHd = $datas->data->url;
 
-            $data =  [
-                'title' => 'Youtube Downloader',
-                'video' => base64_encode($videoHd),
-            ];
-            return view('home/result_yt', $data);
-        } else {
-            return redirect()->to('/')->with('error', 'Link Tidak Sesuai');
+                $data =  [
+                    'title' => 'Youtube Downloader',
+                    'video' => base64_encode($videoHd),
+                ];
+                return view('home/result_yt', $data);
+            } else {
+                return redirect()->to('/')->with('error', 'Link Tidak Sesuai');
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'server kami sedang sibuk, tunggu beberapa saat');
         }
     }
 }
