@@ -139,15 +139,20 @@ class Home extends BaseController
         $client = \Config\Services::curlrequest();
 
         try {
-            $response = $client->request('GET', 'https://api.ibeng.tech/api/downloader/youtube-video?url=' . $link . '&apikey=4Ykrb9N6at');
-            if ($response->getStatusCode() == 200) {
-                $json = $response->getBody();
-                $datas = json_decode($json);
-                $videoHd = $datas->data->url;
+            $response1 = $client->request('GET', 'https://api.ibeng.tech/api/downloader/youtube-video?url=' . $link . '&apikey=4Ykrb9N6at');
+            $response2 = $client->request('GET', 'https://api.ibeng.tech/api/downloader/youtube-audio?url=' . $link . '&apikey=4Ykrb9N6at');
+            if ($response1->getStatusCode() == 200 && $response2->getStatusCode() == 200) {
+                $json1 = $response1->getBody();
+                $json2 = $response2->getBody();
+                $datas1 = json_decode($json1);
+                $datas2 = json_decode($json2);
+                $videoHd = $datas1->data->url;
+                $music = $datas2->data->url;
 
                 $data =  [
                     'title' => 'Youtube Downloader',
                     'video' => base64_encode($videoHd),
+                    'music' => base64_encode($music)
                 ];
                 return view('home/result_yt', $data);
             } else {

@@ -9,6 +9,7 @@
                     <h5>Download Video</h5>
                     <div class="form-group mt-2">
                         <a class="btn btn-primary" id="downloadButton" href="<?= base_url('download/video/' . $video) ?>"> Download Video</a>
+                        <a class="btn btn-primary" id="downloadButton" href="<?= base_url('download/music/' . $video) ?>"> Download Audio</a>
                         <a class="btn btn-dark" href="<?= base_url('/youtube') ?>"> Download Lainya</a>
                     </div>
                     <div class="card-footer bg-whitesmoke rounded">
